@@ -244,21 +244,11 @@ const infectCites = async teamId => {
 };
 
 // strting point
+
 router.get("/play", async (req, res, next) => {
   const cityStatus = await cityModel.getGame(req.session.user_id);
-  const playerLocations = await playerModel.getPlayerCount(req.session.user_id);
 
-  res.render("template", {
-    locals: {
-      title: "Pandemic Georgia",
-      userData: req.session,
-      playerLocations: Object.values(playerLocations),
-      cityStatus: cityStatus
-    },
-    partials: {
-      partial: "game-partial"
-    }
-  });
+  res.JSON(cityStatus);
 });
 
 router.get("/", async (req, res) => {
